@@ -1,0 +1,52 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { url } from '../../lib/site';
+export async function getStaticPaths() {
+  return (await getCollection('projects', ({ data }) => !data.draft)).map(
+    (entry) => ({ params: { slug: entry.data.slug }, props: { entry } }),
+  );
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+const related = (
+  await getCollection('writing', ({ data }) => !data.draft)
+).filter((e) => data.relatedWriting.includes(e.data.slug));
+---
+
+<Base title={data.title} description={data.description}>
+  <header class="page-header">
+    <a class="back-link" href={url('projects/')}>
+      ← PROJECTS
+    </a>
+    <div class="eyebrow">PROJECT {data.number}</div>
+    <h1>{data.title}</h1>
+    <p>{data.description}</p>
+  </header>
+  <div class="reading-layout">
+    <aside class="reading-aside">
+      <span class="status">
+        <span class="signal-dot" />
+        {data.status}
+      </span>
+      {data.technologies.length > 0 && (
+        <div class="tags">{data.technologies.join(' / ')}</div>
+      )}
+      {data.github && <a href={data.github}>SOURCE ON GITHUB ↗</a>}
+    </aside>
+    <article class="prose">
+      <Content />
+      {related.length > 0 && (
+        <section class="related">
+          <h2>Related field notes</h2>
+          {related.map((e) => (
+            <p>
+              <a href={url(`writing/${e.data.slug}/`)}>{e.data.title} →</a>
+            </p>
+          ))}
+        </section>
+      )}
+    </article>
+  </div>
+</Base>

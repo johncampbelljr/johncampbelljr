@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import Pipeline from '../../components/Pipeline.astro';
+import { getCollection } from 'astro:content';
+import { url } from '../../lib/site';
+const projects = await getCollection('projects', ({ data }) => !data.draft);
+---
+
+<Base
+  title="Projects"
+  description="Engineering projects and experiments in agentic software development."
+>
+  <header class="page-header">
+    <div class="eyebrow">02 / PROJECTS</div>
+    <h1>
+      Work in progress<span class="accent">.</span>
+    </h1>
+    <p>
+      Systems I'm building, decisions I'm working through, and the questions
+      that come out of doing the work.
+    </p>
+  </header>
+  <div class="page-content">
+    {projects.map(({ data }) => (
+      <section class="home-section">
+        <div class="featured-project">
+          <div>
+            <div class="project-meta mono">
+              PROJECT {data.number}
+              <span class="status">
+                <span class="signal-dot" />
+                {data.status}
+              </span>
+            </div>
+            <h2 style="margin-top:18px">
+              <a href={url(`projects/${data.slug}/`)}>
+                {data.title} <span class="accent">↗</span>
+              </a>
+            </h2>
+            <p>{data.description}</p>
+            <a class="small-link" href={url(`projects/${data.slug}/`)}>
+              Explore the project →
+            </a>
+          </div>
+          <Pipeline />
+        </div>
+      </section>
+    ))}
+  </div>
+</Base>

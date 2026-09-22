@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+const roles = [
+  [
+    'Security Journey',
+    'Current work',
+    'The current chapter in a career spanning software development, engineering leadership, and security.',
+  ],
+  [
+    'Uber',
+    'Engineering Manager',
+    'Engineering management and distributed-systems work, including C++, Go, Kafka, gRPC, WebRTC, CI/CD, and reliability engineering.',
+  ],
+  [
+    'Proofpoint / Wombat Security',
+    'Senior Director, Development',
+    'Security-product development, including phishing risk systems and reactive security training based on user behavior.',
+  ],
+  [
+    'Executive & Development Consulting',
+    'Consulting',
+    'Executive and development consulting work. Further details to come.',
+  ],
+  [
+    'Victory Media',
+    'VP Engineering',
+    'Engineering leadership. Further details to come.',
+  ],
+  [
+    'SnapRetail',
+    'Director / Architect',
+    'Engineering direction and software architecture. Further details to come.',
+  ],
+  [
+    'mSpoke',
+    'Development Lead / Software Engineer',
+    'Software development and technical leadership. Further details to come.',
+  ],
+  [
+    'Rockwell Automation',
+    'Senior Software Architect',
+    'Software architecture. Further details to come.',
+  ],
+  [
+    'Earlier engineering positions',
+    'Foundations',
+    'Earlier software engineering roles laid the foundation for the architecture and leadership work that followed.',
+  ],
+];
+---
+
+<Base
+  title="Experience"
+  description="A career in software development, architecture, engineering leadership, and security."
+>
+  <header class="page-header">
+    <div class="eyebrow">03 / EXPERIENCE</div>
+    <h1>
+      A career in building<span class="accent">.</span>
+    </h1>
+    <p>
+      From writing software to shaping systems and engineering organizations.
+      The tools change. The work of understanding the problem remains.
+    </p>
+  </header>
+  <div class="page-content">
+    <div class="timeline">
+      {roles.map(([company, role, description], i) => (
+        <section class="timeline-row">
+          <span class="mono">{String(i + 1).padStart(2, '0')}</span>
+          <div>
+            <h2>{company}</h2>
+            <div class="role">{role}</div>
+          </div>
+          <p>{description}</p>
+        </section>
+      ))}
+    </div>
+    <p class="section-note mono">
+      SELECTED EXPERIENCE / ROLE DETAILS AND DATES WILL BE ADDED AS THIS SITE
+      DEVELOPS.
+    </p>
+  </div>
+</Base>

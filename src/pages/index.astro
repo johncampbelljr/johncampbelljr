@@ -1,0 +1,153 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import ArticleRow from '../components/ArticleRow.astro';
+import Pipeline from '../components/Pipeline.astro';
+import { getCollection } from 'astro:content';
+import { url } from '../lib/site';
+const all = (await getCollection('writing', ({ data }) => !data.draft)).sort(
+  (a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0),
+);
+const featured = all.filter((e) => e.data.featured);
+const writing = (featured.length ? featured : all).slice(0, 3);
+const projects = await getCollection(
+  'projects',
+  ({ data }) => data.featured && !data.draft,
+);
+const topics = [
+  [
+    'Agentic-first SDLC',
+    'How development changes when agents become active participants in planning, implementation, testing, and delivery.',
+  ],
+  [
+    'Harness engineering',
+    'The infrastructure, constraints, and feedback systems that make coding agents reliable.',
+  ],
+  [
+    'Context engineering',
+    'Designing the information, tools, and environment agents need to do useful engineering work.',
+  ],
+  [
+    'Secure agentic development',
+    'Security architecture for systems that can modify code, invoke tools, and make engineering decisions.',
+  ],
+];
+---
+
+<Base>
+  <section class="hero">
+    <div class="eyebrow">
+      <span class="signal-dot"></span> SOFTWARE, SYSTEMS & THE WORK AHEAD
+    </div>
+    <div class="hero-grid">
+      <div>
+        <h1>
+          Engineering leader exploring how we{' '}
+          <span class="accent">build and secure software</span> in an
+          agentic-first SDLC.
+        </h1>
+        <p class="hero-copy">
+          I've spent my career building software systems, engineering
+          organizations, and technology products. My current work explores
+          agentic software development, secure software engineering, and how AI
+          changes the architecture and practices of the SDLC.
+        </p>
+        <div class="text-links">
+          <a href={url('writing/')}>
+            Writing <span>↗</span>
+          </a>
+          <a href={url('projects/')}>
+            Projects <span>↗</span>
+          </a>
+          <a href={url('experience/')}>
+            Experience <span>↗</span>
+          </a>
+        </div>
+      </div>
+      <aside class="hero-aside" aria-hidden="true">
+        <svg class="orbital" viewBox="0 0 240 240" fill="none">
+          <circle cx="120" cy="120" r="85" />
+          <circle cx="120" cy="120" r="55" />
+          <ellipse
+            cx="120"
+            cy="120"
+            rx="32"
+            ry="100"
+            transform="rotate(40 120 120)"
+          />
+          <path
+            d="M0 120h240M120 0v240M60 60l120 120M60 180 180 60"
+            stroke-dasharray="2 5"
+          />
+          <circle class="orbit-point" cx="174" cy="54" r="5" />
+          <circle class="orbit-center" cx="120" cy="120" r="4" />
+        </svg>
+        <span class="mono">
+          A CONTINUING EXPLORATION
+          <br />
+          HUMANS + SYSTEMS + AGENTS
+        </span>
+      </aside>
+    </div>
+  </section>
+  <section class="home-section explore-section">
+    <SectionLabel number="01" label="Currently exploring" />
+    <div class="topic-grid">
+      {topics.map(([title, description], i) => (
+        <div class="topic">
+          <span class="topic-number mono">0{i + 1} /</span>
+          <h3>{title}</h3>
+          <p>{description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+  <section class="home-section">
+    <div class="section-heading">
+      <SectionLabel number="02" label="Field notes" />
+      <a class="small-link" href={url('writing/')}>
+        All writing ↗
+      </a>
+    </div>
+    {writing.map((entry) => (
+      <ArticleRow entry={entry} />
+    ))}
+    <p class="section-note mono">
+      AN ONGOING SERIES / BUILDING AN AGENTIC-FIRST SDLC
+    </p>
+  </section>
+  <section class="home-section project-section">
+    <div class="section-heading">
+      <SectionLabel number="03" label="Work in progress" />
+      <a class="small-link" href={url('projects/')}>
+        All projects ↗
+      </a>
+    </div>
+    {projects.map(({ data }) => (
+      <div class="featured-project">
+        <div>
+          <div class="mono project-meta">
+            PROJECT {data.number}
+            <span class="status">
+              <span class="signal-dot" /> {data.status}
+            </span>
+          </div>
+          <h3>
+            <a href={url(`projects/${data.slug}/`)}>
+              {data.title} <span class="accent">↗</span>
+            </a>
+          </h3>
+          <p>{data.description}</p>
+          <a class="small-link" href={url(`projects/${data.slug}/`)}>
+            Explore the project →
+          </a>
+        </div>
+        <Pipeline />
+      </div>
+    ))}
+  </section>
+  <div class="home-colophon">
+    <span class="mono">BUILT ON EXPERIENCE. DRIVEN BY QUESTIONS.</span>
+    <a href={url('about/')}>A little more about me ↗</a>
+  </div>
+</Base>

@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, url } from '../lib/site';
+---
+
+<Base
+  title="About"
+  description="John T. Campbell Jr. on building software, leading engineering teams, and exploring agentic development."
+>
+  <header class="page-header">
+    <div class="eyebrow">04 / ABOUT</div>
+    <h1>
+      Still building.
+      <br />
+      Still asking questions<span class="accent">.</span>
+    </h1>
+  </header>
+  <div class="page-content about-grid">
+    <article class="prose">
+      <p>
+        I've been building software professionally since before “the web” needed
+        a qualifier.
+      </p>
+      <p>
+        That work has taken me from software development into architecture,
+        engineering leadership, and security engineering. I've built software
+        systems, engineering teams, and technology organizations. Each chapter
+        has changed the scale of the problems, but not my interest in
+        understanding how things work.
+      </p>
+      <p>
+        Leadership has never replaced the part of engineering I enjoy most:
+        building systems, experimenting with technology, and working through the
+        problems directly.
+      </p>
+      <h2>The work ahead</h2>
+      <p>
+        I'm currently focused on agentic software development and secure
+        software engineering. I'm interested in the practical details: the
+        context an agent needs, the permissions it should have, the evidence
+        that a change is correct, and where human judgment belongs.
+      </p>
+      <p>
+        This site is a place to document that work. The{' '}
+        <a href={url('projects/')}>projects</a> provide the working context; the{' '}
+        <a href={url('writing/')}>field notes</a> are where I work through the
+        questions that follow.
+      </p>
+      <blockquote>
+        <p>
+          What does software engineering look like when AI agents become
+          first-class participants in the development lifecycle?
+        </p>
+      </blockquote>
+      <p>That's the question driving this next chapter.</p>
+      <div class="text-links">
+        <a href={site.github}>GitHub ↗</a>
+        <a href={site.linkedin}>LinkedIn ↗</a>
+      </div>
+    </article>
+    <aside class="about-aside">
+      <span class="mono">THE THREAD THROUGH IT ALL</span>
+      <ol>
+        <li>Software developer</li>
+        <li>Architect</li>
+        <li>Engineering leader</li>
+        <li>Security engineering</li>
+        <li>Agentic software development</li>
+      </ol>
+      <p class="mono">BASED IN ASHEVILLE, NC</p>
+    </aside>
+  </div>
+</Base>

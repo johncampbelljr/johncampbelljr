@@ -1,0 +1,38 @@
+---
+const { full = false } = Astro.props;
+const steps = full
+  ? [
+      'User',
+      'Feature request',
+      'Conversation / requirements',
+      'Specification',
+      'Agentic development infrastructure',
+      'Coding agent',
+      'Branch',
+      'Implementation',
+      'Automated tests / validation',
+      'Pull request',
+      'Human review',
+      'Merge',
+    ]
+  : ['Request', 'Agent', 'Pull request', 'Human review'];
+---
+
+<figure class:list={['pipeline', { 'pipeline-full': full }]}>
+  <figcaption class="mono">
+    FIG. 01 <span>THE HUMAN BOUNDARY</span>
+  </figcaption>
+  <ol>
+    {steps.map((step, i) => (
+      <li class:list={{ 'human-step': step === 'Human review' }}>
+        <span class="step-number">{String(i + 1).padStart(2, '0')}</span>
+        <span>{step}</span>
+      </li>
+    ))}
+  </ol>
+  <div class="pipeline-caption mono">
+    {full
+      ? 'IMPLEMENTATION → VALIDATION → HUMAN REVIEW'
+      : 'AUTONOMOUS IMPLEMENTATION → HUMAN JUDGMENT'}
+  </div>
+</figure>

@@ -1,0 +1,55 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { url, formatDate } from '../../lib/site';
+export async function getStaticPaths() {
+  return (await getCollection('writing', ({ data }) => !data.draft)).map(
+    (entry) => ({ params: { slug: entry.data.slug }, props: { entry } }),
+  );
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+---
+
+<Base
+  title={data.title}
+  description={data.description}
+  article
+  date={data.date}
+  tags={data.tags}
+>
+  <header class="page-header">
+    <a class="back-link" href={url('writing/')}>
+      ← FIELD NOTES
+    </a>
+    <div class="eyebrow">
+      {data.series || 'ENGINEERING NOTES'}{' '}
+      {data.order && ` / ${String(data.order).padStart(2, '0')}`}
+    </div>
+    <h1>{data.title}</h1>
+    <p>{data.description}</p>
+  </header>
+  <div class="reading-layout">
+    <aside class="reading-aside">
+      {data.placeholder
+        ? 'OUTLINE / IN DEVELOPMENT'
+        : data.date && (
+            <time datetime={data.date.toISOString()}>
+              {formatDate(data.date)}
+            </time>
+          )}
+      <div class="tags">{data.tags.join(' / ')}</div>
+    </aside>
+    <article class="prose">
+      {data.placeholder && (
+        <div class="callout">
+          <strong>A note in progress.</strong> This is an outline for an
+          upcoming article. The framework and its dimensions will be developed
+          in this series.
+        </div>
+      )}
+      <Content />
+    </article>
+  </div>
+</Base>

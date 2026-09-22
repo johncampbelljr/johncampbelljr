@@ -1,0 +1,52 @@
+---
+title: Agentic Software Development Pipeline
+slug: agentic-software-development-pipeline
+number: '001'
+status: ACTIVE / EXPERIMENTAL
+description: An internal software-development system in which users can request product changes conversationally and a coding agent implements the requested changes.
+featured: true
+relatedWriting: [what-work-should-we-give-coding-agents]
+---
+
+import Pipeline from '../../src/components/Pipeline.astro';
+
+## The problem
+
+What does the development process look like when a product change begins as a conversation and an agent carries out the implementation?
+
+This project explores that workflow, including the infrastructure, permissions, validation, and human decisions needed around the coding agent.
+
+## Architecture
+
+The high-level flow moves from a feature request through requirements and a specification, into a development workflow, and finally to a pull request for human review.
+
+<Pipeline full />
+
+The central architectural principle is that **the human currently enters the loop primarily at the pull-request boundary**.
+
+## Technical decisions
+
+The pull request is the current boundary between autonomous implementation and human approval. It gives the human reviewer a concrete change to assess, alongside the available tests and validation.
+
+The right constraints around this workflow are an active area of exploration:
+
+- Where should human approval occur?
+- How should agent permissions be constrained?
+- How should coding environments be isolated?
+- How should agent activity be logged?
+- How should generated code be evaluated?
+
+Specific infrastructure and technology choices will be documented here as the case study develops.
+
+## Questions driving the work
+
+- What work can safely be delegated entirely to agents?
+- What work requires hybrid human and agent development?
+- What work should remain human-led?
+- How does business exposure affect acceptable autonomy?
+- How does security risk affect acceptable autonomy?
+- What happens when agents produce code faster than humans can review it?
+
+## Lessons learned
+
+This project is active and experimental. Findings, implementation details, and more detailed architecture diagrams will be added as they are ready to share.

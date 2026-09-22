@@ -1,0 +1,69 @@
+---
+import Base from '../../layouts/Base.astro';
+import ArticleRow from '../../components/ArticleRow.astro';
+import { getCollection } from 'astro:content';
+const entries = (
+  await getCollection('writing', ({ data }) => !data.draft)
+).sort((a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0));
+const upcoming = [
+  [
+    'Autonomy Risk',
+    'Programming difficulty and the risk of autonomous execution are different questions.',
+  ],
+  [
+    'Business Exposure',
+    'How the consequences of a change shape acceptable agent autonomy.',
+  ],
+  [
+    'The PR as the Human Boundary',
+    'Where human review belongs, and whether the pull request is enough.',
+  ],
+  [
+    'The Coding Agent Isn’t the Architecture',
+    'The compute, permissions, context, and feedback systems around the model.',
+  ],
+];
+---
+
+<Base
+  title="Writing"
+  description="Field notes from building software in an increasingly agentic development environment."
+>
+  <header class="page-header">
+    <div class="eyebrow">01 / WRITING</div>
+    <h1>
+      Field notes<span class="accent">.</span>
+    </h1>
+    <p>
+      Notes from building software in an increasingly agentic development
+      environment.
+    </p>
+  </header>
+  <div class="page-content page-index">
+    {entries.map((entry) => (
+      <ArticleRow entry={entry} />
+    ))}
+    <section class="series">
+      <span class="mono">AN ONGOING EXPLORATION</span>
+      <h2>Building an Agentic-First SDLC</h2>
+      <ol>
+        <li>
+          <div>
+            <strong>What Work Should We Give Coding Agents?</strong>
+            <p>An introduction to the Agentic Suitability Framework.</p>
+          </div>
+          <span class="mono">OUTLINE</span>
+        </li>
+        {upcoming.map(([title, description]) => (
+          <li>
+            <div>
+              <strong>{title}</strong>
+              <p>{description}</p>
+            </div>
+            <span class="mono">PLANNED</span>
+          </li>
+        ))}
+      </ol>
+    </section>
+  </div>
+</Base>
