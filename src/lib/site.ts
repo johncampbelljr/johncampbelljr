@@ -1,7 +1,7 @@
 export const site = {
   name: 'John T. Campbell Jr.',
   description:
-    'Engineering leader exploring how we build and secure software in an agentic-first SDLC.',
+    'Charting the movement toward a secure and scalable ASDLC.',
   github: 'https://github.com/johncampbelljr',
   linkedin: 'https://www.linkedin.com/in/johncampbelljr/',
 };
