@@ -175,7 +175,7 @@ nav a[aria-current='page']:after {
   max-width: 215px;
   stroke: #c2c6b8;
   stroke-width: 0.8;
-  margin: 0 auto 22px;
+  margin: 0 auto;
 }
 .orbit-point {
   fill: var(--accent);
@@ -185,12 +185,6 @@ nav a[aria-current='page']:after {
 .orbit-center {
   fill: #848b7c;
   stroke: none;
-}
-.hero-aside .mono {
-  font-size: 8px;
-  line-height: 1.9;
-  letter-spacing: 0.09em;
-  color: var(--muted);
 }
 .home-section {
   padding: 30px 0 35px;
