@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import Pipeline from '../../components/Pipeline.astro';
+import ContactVaultFlow from '../../components/ContactVaultFlow.astro';
 import { getCollection } from 'astro:content';
 import { url } from '../../lib/site';
 const projects = await getCollection('projects', ({ data }) => !data.draft);
@@ -8,7 +8,7 @@ const projects = await getCollection('projects', ({ data }) => !data.draft);
 
 <Base
   title="Projects"
-  description="Engineering projects and experiments in agentic software development."
+  description="Apps, engineering projects, and experiments."
 >
   <header class="page-header">
     <div class="eyebrow">02 / PROJECTS</div>
@@ -42,7 +42,7 @@ const projects = await getCollection('projects', ({ data }) => !data.draft);
               Explore the project →
             </a>
           </div>
-          <Pipeline />
+          <ContactVaultFlow />
         </div>
       </section>
     ))}

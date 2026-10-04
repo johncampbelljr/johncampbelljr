@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import SectionLabel from '../components/SectionLabel.astro';
 import ArticleRow from '../components/ArticleRow.astro';
-import Pipeline from '../components/Pipeline.astro';
+import ContactVaultFlow from '../components/ContactVaultFlow.astro';
 import { getCollection } from 'astro:content';
 import { url } from '../lib/site';
 const all = (await getCollection('writing', ({ data }) => !data.draft)).sort(
@@ -142,7 +142,7 @@ const topics = [
             Explore the project →
           </a>
         </div>
-        <Pipeline />
+        <ContactVaultFlow />
       </div>
     ))}
   </section>

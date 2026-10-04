@@ -1,0 +1,18 @@
+---
+const steps = ['Lock a contact', 'Wait for access', 'Briefly unlock'];
+---
+
+<figure class="pipeline">
+  <figcaption class="mono">
+    FIG. 01 <span>A MOMENT TO RECONSIDER</span>
+  </figcaption>
+  <ol>
+    {steps.map((step, i) => (
+      <li>
+        <span class="step-number">{String(i + 1).padStart(2, '0')}</span>
+        <span>{step}</span>
+      </li>
+    ))}
+  </ol>
+  <div class="pipeline-caption mono">ON YOUR IPHONE / ON YOUR TERMS</div>
+</figure>

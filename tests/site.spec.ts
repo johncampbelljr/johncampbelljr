@@ -8,7 +8,7 @@ const paths = [
   '/experience/',
   '/about/',
   '/writing/what-work-should-we-give-coding-agents/',
-  '/projects/agentic-software-development-pipeline/',
+  '/projects/contact-vault/',
 ];
 for (const width of [1440, 390, 320]) {
   test(`pages are navigable, accessible, and fit at ${width}px`, async ({
@@ -50,14 +50,20 @@ for (const width of [1440, 390, 320]) {
       .click();
     await expect(page.getByText('A note in progress.')).toBeVisible();
     await page
-      .locator('article')
+      .getByRole('navigation')
+      .getByRole('link', { name: 'Projects', exact: true })
+      .click();
+    await expect(
+      page.getByText('Agentic Software Development Pipeline'),
+    ).toHaveCount(0);
+    await page
       .getByRole('link', {
-        name: 'Agentic Software Development Pipeline',
+        name: 'Contact Vault ↗',
         exact: true,
       })
       .click();
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-      'Agentic Software Development Pipeline',
+      'Contact Vault',
     );
     for (const file of [
       '/rss.xml',

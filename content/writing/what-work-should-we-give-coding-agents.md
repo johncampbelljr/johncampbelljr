@@ -36,6 +36,6 @@ These are starting points for the framework, rather than a fixed scoring system.
 
 ## Grounding the framework in practice
 
-The [Agentic Software Development Pipeline](../../projects/agentic-software-development-pipeline/) is the working context for these questions. It places human review primarily at the pull-request boundary and provides a concrete setting for exploring when that boundary is appropriate.
+The Agentic Software Development Pipeline is the working context for these questions. It places human review primarily at the pull-request boundary and provides a concrete setting for exploring when that boundary is appropriate.
 
 Future notes in this series will take each dimension in turn. Examples, evaluation criteria, and conclusions will follow as the work develops.
